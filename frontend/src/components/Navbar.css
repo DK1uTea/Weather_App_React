@@ -1,0 +1,35 @@
+/* Navbar.css */
+
+.nav-pills {
+    background: linear-gradient(90deg, #0077b6, #00b4d8);
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+  }
+  
+  .nav-pills .nav-link {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 15px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .nav-pills .nav-link:hover {
+    background-color: #023e8a;
+    transform: scale(1.1);
+  }
+  
+  .nav-pills .nav-link.active {
+    background-color: #03045e;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  

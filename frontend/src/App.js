@@ -3,15 +3,19 @@ import Home from './components/Home';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
 import Weather from './components/Weather';
 import Navbar from './components/Navbar';
+import './App.css';
+
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/weather' element={<Weather />}></Route>
-      </Routes>
-    </Router>
+    <div className='app-container'>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/weather' element={<Weather />}></Route>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
