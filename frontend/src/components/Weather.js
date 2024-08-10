@@ -40,6 +40,10 @@ export default function Weather() {
     }
   };
 
+  const getWeatherIconUrl = (url) => {
+    return `https://openweathermap.org/img/wn/${url}@2x.png`;
+  }
+
   return (
     <div className='container'>
       <div className='search-div'>
@@ -68,6 +72,11 @@ export default function Weather() {
               <p id='lat'>Lat: {weatherInfo.coord.lat}</p>
             </div>
             <div id='weather'>
+              <img 
+                id='weather-icon' 
+                alt={`${weatherInfo.name}-${weatherInfo.weather[0].description}`}
+                src={getWeatherIconUrl(weatherInfo.weather[0].icon)}
+              />
               <p id='description'>Description: {weatherInfo.weather[0].description}</p>
             </div>
             <div id='main'>
@@ -77,10 +86,6 @@ export default function Weather() {
               <p id='temp_max'>Temp max: {weatherInfo.main.temp_max}°C</p>
               <p id='pressure'>Pressure: {weatherInfo.main.pressure} hPa</p>
               <p id='humidity'>Humidity: {weatherInfo.main.humidity}%</p>
-              {/* Check if sea_level exists before rendering */}
-              {/* {weatherInfo.main.sea_level && (
-                <p id='sea_level'>Sea level: {weatherInfo.main.sea_level} hPa</p>
-              )} */}
               <p id='sea_level'>Sea level: {weatherInfo.main.sea_level} hPa</p>
             </div>
             <div id='wind'>
