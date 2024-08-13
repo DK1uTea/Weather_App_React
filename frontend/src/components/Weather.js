@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import './Weather.css';
 
 export default function Weather() {
   const [weatherInfo, setWeatherInfo] = useState(null);
@@ -28,7 +29,7 @@ export default function Weather() {
       }
       const data = await res.json();
       setWeatherInfo(data);
-      console.log(`Weather data of ${data.name}: `, data); // Log the fetched data
+      console.log(`Weather data of ${data.name}: `, data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -42,10 +43,10 @@ export default function Weather() {
 
   const getWeatherIconUrl = (url) => {
     return `https://openweathermap.org/img/wn/${url}@2x.png`;
-  }
+  };
 
   return (
-    <div className='container'>
+    <div className='weather-container'>
       <div className='search-div'>
         <label htmlFor='search-input'>Enter your city: </label>
         <input
@@ -64,48 +65,34 @@ export default function Weather() {
 
       {/* Conditionally render the weather data */}
       {weatherInfo ? (
-        <>
-          <h1 id='city-name'>{weatherInfo.name}</h1>
-          <div className='display-div'>
-            <div id='coord'>
-              <p id='lon'>Lon: {weatherInfo.coord.lon}</p>
-              <p id='lat'>Lat: {weatherInfo.coord.lat}</p>
-            </div>
-            <div id='weather'>
+        <div className='display-container'>
+          <div className='info-div'>
+            <div className='info-left'>
+              <h1 id='city-name'>{weatherInfo.name}</h1>
               <img 
                 id='weather-icon' 
                 alt={`${weatherInfo.name}-${weatherInfo.weather[0].description}`}
                 src={getWeatherIconUrl(weatherInfo.weather[0].icon)}
               />
-              <p id='description'>Description: {weatherInfo.weather[0].description}</p>
-            </div>
-            <div id='main'>
               <p id='temp'>Temp: {weatherInfo.main.temp}°C</p>
+            </div>
+
+            <div className='info-right'>
+              <p id='description'>Description: {weatherInfo.weather[0].description}</p>
               <p id='feels_like'>Feels like: {weatherInfo.main.feels_like}°C</p>
               <p id='temp_min'>Temp min: {weatherInfo.main.temp_min}°C</p>
               <p id='temp_max'>Temp max: {weatherInfo.main.temp_max}°C</p>
               <p id='pressure'>Pressure: {weatherInfo.main.pressure} hPa</p>
               <p id='humidity'>Humidity: {weatherInfo.main.humidity}%</p>
-              <p id='sea_level'>Sea level: {weatherInfo.main.sea_level} hPa</p>
-            </div>
-            <div id='wind'>
               <p id='speed'>Speed: {weatherInfo.wind.speed} m/s</p>
-              <p id='deg'>Deg: {weatherInfo.wind.deg}°</p>
-            </div>
-            <div id='sys'>
-              <p id='sunrise'>
-                Sunrise: {new Date(weatherInfo.sys.sunrise * 1000).toLocaleTimeString()}
-              </p>
-              <p id='sunset'>
-                Sunset: {new Date(weatherInfo.sys.sunset * 1000).toLocaleTimeString()}
-              </p>
+              <p id='sunrise'>Sunrise: {new Date(weatherInfo.sys.sunrise * 1000).toLocaleTimeString()}</p>
+              <p id='sunset'>Sunset: {new Date(weatherInfo.sys.sunset * 1000).toLocaleTimeString()}</p>
             </div>
           </div>
-        </>
-      ) : 
-      (<>
+        </div>
+      ) : (
         <p>Loading...</p>
-      </>)}
+      )}
     </div>
   );
 }

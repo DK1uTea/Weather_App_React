@@ -11,7 +11,7 @@ export default function Navbar() {
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="2" href="/weather">
+                <Nav.Link eventKey="1" href="/weather">
                 Weather
                 </Nav.Link>
             </Nav.Item>

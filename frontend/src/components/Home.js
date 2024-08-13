@@ -6,7 +6,7 @@ import './Home.css';
 
 export default function Home() {
   return (
-    <div className='container'>
+    <div className='home-container'>
       <h1>Welcome to Weather App!</h1>
       <Button variant="primary">
         <Link to="/weather" style={{ color: 'white', textDecoration: 'none' }}>

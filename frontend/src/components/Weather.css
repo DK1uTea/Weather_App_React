@@ -1,0 +1,122 @@
+/* Weather.css */
+
+/* Main container styling */
+.weather-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align search bar at the top */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%); /* Gradient background */
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Search bar styling */
+.search-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: 300px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    border: 2px solid #2c3e50;
+    height: 40px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+#search-input:focus {
+    border-color: #3498db;
+}
+
+#search-btn {
+    border-radius: 20px;
+    height: 40px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    padding: 0 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#search-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Display container for weather info */
+.display-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 900px; /* Adjust as needed */
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Left side for city name, icon, and temperature */
+.info-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.info-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#city-name {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+#weather-icon {
+    width: 120px;
+    height: 120px;
+}
+
+#temp {
+    font-size: 2.5rem;
+    margin-top: 10px;
+    color: #e74c3c;
+}
+
+/* Right side for detailed information */
+.info-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.info-right p {
+    margin: 5px 0;
+    color: #7f8c8d;
+    font-size: 1rem;
+}
