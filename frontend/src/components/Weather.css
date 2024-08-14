@@ -18,27 +18,39 @@
 /* Search bar styling */
 .search-div {
     width: 100%;
+    max-width: 600px; /* Limit the width for larger screens */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Add more space below the search bar */
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent background */
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.search-div .fa-location-dot {
+    font-size: 24px; /* Increase icon size */
+    margin-right: 10px; /* Add some space between the icon and the input field */
 }
 
 #search-input {
-    width: 300px;
+    width: 70%; /* Make input wider */
     padding: 10px 15px;
     border-radius: 20px;
     margin-right: 10px;
+    margin-left: 10px;
     border: 2px solid #2c3e50;
     height: 40px;
     font-size: 16px;
     outline: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #search-input:focus {
     border-color: #3498db;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
 }
 
 #search-btn {
@@ -51,72 +63,110 @@
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #search-btn:hover {
     background-color: #2980b9;
+    transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
 /* Display container for weather info */
 .display-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
-    max-width: 900px; /* Adjust as needed */
-    background-color: white;
-    padding: 20px;
+    max-width: 1000px; /* Limit width on larger screens */
+    height: auto; /* Allow dynamic height */
+    background-color: #27187a; /* A rich, dark shade for a more elegant look */
+    color: #ffffff; /* Set text color to white for better contrast */
+    padding: 30px 40px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker and larger shadow for more depth */
     margin-top: 20px;
+    transition: transform 0.3s ease;
 }
 
-/* Left side for city name, icon, and temperature */
-.info-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+.display-container:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
 }
 
 .info-left {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    text-align: center;
+    padding-right: 20px; /* Add padding between columns */
 }
 
 #city-name {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #2c3e50;
+    font-size: 3rem; /* Increase font size */
+    margin-bottom: 15px; /* More spacing */
+    color: #e0e0e0; /* Softer white */
 }
 
 #weather-icon {
-    width: 120px;
-    height: 120px;
+    width: 240px; /* Larger weather icon */
+    height: 240px;
+}
+
+#description {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    font-style: italic;
+    color: #dcdcdc;
 }
 
 #temp {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     margin-top: 10px;
     color: #e74c3c;
 }
 
-/* Right side for detailed information */
 .info-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-left: 20px;
-    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; /* Add gap between grid items */
+    padding-left: 20px; /* Add padding between columns */
 }
 
-.info-right p {
-    margin: 5px 0;
-    color: #7f8c8d;
-    font-size: 1rem;
+/* Info text styling */
+.info-right p,
+.info-left p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    color: #c0c0c0; /* Softer white for less emphasis */
+}
+
+/* Sunrise and sunset styling */
+#sunrise, #sunset {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffcf33;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .display-container {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        padding: 20px;
+    }
+
+    .info-left, .info-right {
+        padding: 0;
+        text-align: center; /* Center text for smaller screens */
+    }
+
+    #weather-icon {
+        margin: 20px 0; /* Add space between image and text */
+    }
+
+    #city-name {
+        font-size: 2.5rem; /* Adjust font size */
+    }
+
+    #temp {
+        font-size: 2rem; /* Adjust font size */
+    }
 }

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 import './Weather.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faLocationDot, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+
 
 export default function Weather() {
   const [weatherInfo, setWeatherInfo] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const app_id = '27b6db0acfb370e208fdaf1467da3129';
-
+  const DEFAULT_VALUE = "--";
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -25,6 +28,7 @@ export default function Weather() {
       const res = await fetch(url);
       if (!res.ok) {
         setWeatherInfo(null);
+        alert("Data not found!");
         throw new Error('Data not found!');
       }
       const data = await res.json();
@@ -48,7 +52,7 @@ export default function Weather() {
   return (
     <div className='weather-container'>
       <div className='search-div'>
-        <label htmlFor='search-input'>Enter your city: </label>
+        <FontAwesomeIcon icon={faLocationDot} bounce />
         <input
           id='search-input'
           type='text'
@@ -59,39 +63,39 @@ export default function Weather() {
           required
         />
         <Button variant='info' id='search-btn' onClick={handleSearch}>
-          Search
+          <FontAwesomeIcon icon={faMagnifyingGlass} beat />
         </Button>
       </div>
 
       {/* Conditionally render the weather data */}
       {weatherInfo ? (
         <div className='display-container'>
-          <div className='info-div'>
-            <div className='info-left'>
-              <h1 id='city-name'>{weatherInfo.name}</h1>
-              <img 
-                id='weather-icon' 
-                alt={`${weatherInfo.name}-${weatherInfo.weather[0].description}`}
-                src={getWeatherIconUrl(weatherInfo.weather[0].icon)}
-              />
-              <p id='temp'>Temp: {weatherInfo.main.temp}°C</p>
-            </div>
-
-            <div className='info-right'>
-              <p id='description'>Description: {weatherInfo.weather[0].description}</p>
-              <p id='feels_like'>Feels like: {weatherInfo.main.feels_like}°C</p>
-              <p id='temp_min'>Temp min: {weatherInfo.main.temp_min}°C</p>
-              <p id='temp_max'>Temp max: {weatherInfo.main.temp_max}°C</p>
-              <p id='pressure'>Pressure: {weatherInfo.main.pressure} hPa</p>
-              <p id='humidity'>Humidity: {weatherInfo.main.humidity}%</p>
-              <p id='speed'>Speed: {weatherInfo.wind.speed} m/s</p>
-              <p id='sunrise'>Sunrise: {new Date(weatherInfo.sys.sunrise * 1000).toLocaleTimeString()}</p>
-              <p id='sunset'>Sunset: {new Date(weatherInfo.sys.sunset * 1000).toLocaleTimeString()}</p>
-            </div>
+          <div className='info-left'>
+            <h1 id='city-name'>{weatherInfo.name || DEFAULT_VALUE}</h1>
+            <img 
+              id='weather-icon' 
+              alt={`${weatherInfo.name}-${weatherInfo.weather[0].description}`}
+              src={getWeatherIconUrl(weatherInfo.weather[0].icon)}
+            />
+            <p id='description'>{weatherInfo.weather[0].description || DEFAULT_VALUE}</p>
+            <p id='temp'>{weatherInfo.main.temp}°C</p>            
+            <p id='feels_like'>Feels like: {weatherInfo.main.feels_like || DEFAULT_VALUE}°C</p>
+            <p id='temp_min'>Temp min: {weatherInfo.main.temp_min || DEFAULT_VALUE}°C</p>
+            <p id='temp_max'>Temp max: {weatherInfo.main.temp_max || DEFAULT_VALUE}°C</p>
           </div>
+          <div className='info-right'>
+            <p id='humidity'>Humidity: {weatherInfo.main.humidity || DEFAULT_VALUE}%</p>
+            <p id='pressure'>Pressure: {weatherInfo.main.pressure || DEFAULT_VALUE} hPa</p>  
+            <p id='sea_level'>Sea level: {weatherInfo.main.sea_level || DEFAULT_VALUE}</p>            
+            <p id='speed'>Wind speed: {weatherInfo.wind.speed || DEFAULT_VALUE} m/s</p>
+            <p id='sunrise'>Sunrise: {new Date(weatherInfo.sys.sunrise * 1000 || DEFAULT_VALUE).toLocaleTimeString()}</p>
+            <p id='sunset'>Sunset: {new Date(weatherInfo.sys.sunset * 1000 || DEFAULT_VALUE).toLocaleTimeString()}</p>
+          </div>         
         </div>
       ) : (
-        <p>Loading...</p>
+        <Alert key='info' variant='info'>
+          Find your weather infomation of your city!
+        </Alert>
       )}
     </div>
   );
