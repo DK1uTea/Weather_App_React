@@ -4,11 +4,10 @@ import './Weather.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faLocationDot, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
-
 export default function Weather() {
   const [weatherInfo, setWeatherInfo] = useState(null);
   const [inputValue, setInputValue] = useState('');
-  const app_id = '27b6db0acfb370e208fdaf1467da3129';
+  const app_id = process.env.REACT_APP_WEATHER_API_KEY;
   const DEFAULT_VALUE = "--";
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
