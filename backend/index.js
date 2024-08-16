@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true, limit: '30mb'}));
 app.use(cors());
 
-app.use('/weather', weather);
+app.use('/api/weather', weather);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
