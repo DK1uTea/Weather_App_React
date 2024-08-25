@@ -1,5 +1,5 @@
   import React, { useState } from 'react';
-  import { Alert, Button } from 'react-bootstrap';
+  import { Alert, Button, Col, Row} from 'react-bootstrap';
   import './Weather.css';
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
   import {faLocationDot, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
@@ -73,10 +73,12 @@
                 src={getWeatherIconUrl(weatherInfo.weather[0].icon)}
               />
               <p id='description'>{weatherInfo.weather[0].description || DEFAULT_VALUE}</p>
-              <p id='temp'>{weatherInfo.main.temp}°C</p>            
-              <p id='feels_like'>Feels like: {weatherInfo.main.feels_like || DEFAULT_VALUE}°C</p>
-              <p id='temp_min'>Temp min: {weatherInfo.main.temp_min || DEFAULT_VALUE}°C</p>
-              <p id='temp_max'>Temp max: {weatherInfo.main.temp_max || DEFAULT_VALUE}°C</p>
+              <p id='temp'>{weatherInfo.main.temp}°C</p>   
+              <Row>
+                <Col xs={12}><p id='feels_like'>Feels like: {weatherInfo.main.feels_like || DEFAULT_VALUE}°C</p></Col>
+                <Col><p id='temp_min'>Temp min: {weatherInfo.main.temp_min || DEFAULT_VALUE}°C</p></Col>
+                <Col><p id='temp_max'>Temp max: {weatherInfo.main.temp_max || DEFAULT_VALUE}°C</p></Col>
+              </Row>    
             </div>
             <div className='info-right'>
               <p id='humidity'>Humidity: {weatherInfo.main.humidity || DEFAULT_VALUE}%</p>

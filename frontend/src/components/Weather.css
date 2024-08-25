@@ -138,6 +138,26 @@
     color: #c0c0c0; /* Softer white for less emphasis */
 }
 
+/* Adjusted text styling for better visibility */
+.info-right p {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.6); /* Slightly more opaque background */
+    padding: 5px;
+    margin: 5px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333; /* Darker text color for better contrast */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow to enhance readability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Further adjustments if needed */
+.info-left p {
+    color: #ffffff; /* Bright white for better visibility */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+}
+
 /* Sunrise and sunset styling */
 #sunrise, #sunset {
     margin-top: 10px;
